@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import OverviewCards from './components/OverviewCards';
+import EventChart from './components/EventChart';
+import EventTable from './components/EventTable';
+import Modal from './components/Modal';
+import BottomNavbar from './components/BottomNavbar';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const event = { title: 'Event Title', description: 'Event Description' };
+  
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Toggle the 'dark' class on the document element
+    document.documentElement.classList.toggle('dark', !darkMode);
+  };
+
+  const toggleSidebarCollapse = () => {
+    setSidebarCollapsed((prev) => !prev);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}>
+      {/* Sidebar */}
+      <Sidebar 
+        darkMode={darkMode} 
+        toggleDarkMode={toggleDarkMode} 
+        toggleCollapse={toggleSidebarCollapse} 
+        collapsed={sidebarCollapsed}
+      />
+      
+      {/* Main Content */}
+      <div className={`flex-1 p-6 transition-all duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'} 
+        ${sidebarCollapsed ? 'ml-0 md:ml-20' : 'ml-0 md:ml-60'} 'md:ml-20' : 'md:ml-60' `}>
+
+        
+
+
+        <OverviewCards darkMode={darkMode} />
+        <EventChart />
+        <EventTable darkMode={darkMode} />
+        <BottomNavbar darkMode={darkMode}/>
+        
+        
+        
+      </div>
     </div>
   );
 }
