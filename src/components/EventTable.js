@@ -13,7 +13,7 @@ import autoTable from 'jspdf-autotable'; // This is an additional plugin for aut
 const EventTable = ({ darkMode }) => {
     const events = [
         { name: 'Cloud Innovation summit and Innovation', date: '2024-10-15', speaker: 'Jane Doe', status: 'completed', speakerProfilePicture: '/profile.png', },
-        { name: 'Blockchain Revolution Conference', date: '15-05-24', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
@@ -28,7 +28,7 @@ const EventTable = ({ darkMode }) => {
         { name: 'Smart Cities Forum', date: '2024-10-18', speaker: 'Dr. Maria Hernandez', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Tech Safari Mixer', date: '2024-09-30', speaker: 'Guest Panel', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Cloud Innovation summit', date: '2024-10-15', speaker: 'Jane Doe', status: 'completed', speakerProfilePicture: '/profile.png', },
-        { name: 'Blockchain Revolution Conference', date: '15-05-24', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
@@ -36,7 +36,7 @@ const EventTable = ({ darkMode }) => {
         { name: 'Smart Cities Forum', date: '2024-10-18', speaker: 'Dr. Maria Hernandez', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Tech Safari Mixer', date: '2024-09-30', speaker: 'Guest Panel', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Cloud Innovation summit', date: '2024-10-15', speaker: 'Jane Doe', status: 'completed', speakerProfilePicture: '/profile.png', },
-        { name: 'Blockchain Revolution Conference', date: '15-05-24', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
@@ -44,7 +44,19 @@ const EventTable = ({ darkMode }) => {
         { name: 'Smart Cities Forum', date: '2024-10-18', speaker: 'Dr. Maria Hernandez', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Tech Safari Mixer', date: '2024-09-30', speaker: 'Guest Panel', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'Cloud Innovation summit', date: '2024-10-15', speaker: 'Jane Doe', status: 'completed', speakerProfilePicture: '/profile.png', },
-        { name: 'Blockchain Revolution Conference', date: '15-05-24', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Cybersecurity for startups', date: '2024-11-19', speaker: 'Emily Zhang', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Smart Cities Forum', date: '2024-10-18', speaker: 'Dr. Maria Hernandez', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Tech Safari Mixer', date: '2024-09-30', speaker: 'Guest Panel', status: 'in-progress', speakerProfilePicture: '/profile.png', },
+        { name: 'Cloud Innovation summit', date: '2024-10-15', speaker: 'Jane Doe', status: 'completed', speakerProfilePicture: '/profile.png', },
+        { name: 'Blockchain Revolution Conference', date: '2023-5-22', speaker: 'Jane Smith', status: 'in-progress', speakerProfilePicture: '/profile.png', },
         { name: 'AI in Healthcare Symposium', date: '2024-12-01', speaker: 'Dr. Aisha Malik', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Future of Fintech Forum', date: '2024-10-25', speaker: 'John Lee', status: 'completed', speakerProfilePicture: '/profile.png', },
         { name: 'Data analytic In Business', date: '2024-11-12', speaker: 'Rachel Moore', status: 'completed', speakerProfilePicture: '/profile.png', },
@@ -195,7 +207,7 @@ const EventTable = ({ darkMode }) => {
 
 
     return (
-        <div className={`p-6 mb-16 md:mb-4 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+        <div className={`p-0 md:p-6 mb-16 md:mb-4 mt-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white-100 text-black'}`}>
             
             <h1 className="text-2xl font-bold mb-4">Event History</h1>
 
@@ -206,7 +218,7 @@ const EventTable = ({ darkMode }) => {
                         placeholder="Search"
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className={`border rounded-md p-2 pl-10 w-full ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
+                        className={`border  p-2 pl-10 w-full  ${darkMode ? 'bg-gray-700 text-white' : 'bg-white-100 text-black'}`}
                     />
                     {/* Search icon inside the input */}
                     <CiSearch className="absolute left-3 top-1/2 transform -translate-y-3/4 text-gray-500" />
@@ -218,7 +230,7 @@ const EventTable = ({ darkMode }) => {
                         value={selectedDate}
                         onChange={handleDateChange}
                         placeholder={isFocused ? "" : "Date"}
-                        className={`border rounded-md p-2 w-full placeholder-gray-500 ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
+                        className={`border p-2 w-full placeholder-gray-500 ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
                     />
@@ -227,7 +239,7 @@ const EventTable = ({ darkMode }) => {
 
                 <div>
                     <select
-                        className={`border rounded-md p-2 w-full md:w-auto ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
+                        className={`border p-2 w-full md:w-auto ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
                         onChange={(e) => handleStatusChange(e.target.value)}
                     >
                         <option value="">Status</option> {/* Show all when no specific status is selected */}
@@ -238,7 +250,7 @@ const EventTable = ({ darkMode }) => {
                 </div>
                 <div>
                     <select
-                        className={`border rounded-md p-2 w-full md:w-2/3 ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
+                        className={`border  p-2 w-full md:w-2/3 ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
                         onChange={(e) => handleSortBySpeakerName(e.target.value)}
                     >
                         <option value="" >Name</option> {/* Default option */}
@@ -247,12 +259,12 @@ const EventTable = ({ darkMode }) => {
                     </select>
 
                 </div>
-                <span className="w-full md:w-auto">Displaying {events.length} results</span>
+                <span className="w-full md:w-auto font-bold">Displaying {events.length} results</span>
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-between space-x-2">
                     <span className="text-gray-600">Sort:</span>
                     <select
-                        className={`border rounded-md p-2 w-full md:w-auto ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}
+                        className={`border p-2 text-right w-full w-1/2  md:w-auto ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}mr-4`}
                         onChange={(e) => handleSortChange(e.target.value)}
                     >
                         <option value="recent">Most Recent</option>
@@ -262,13 +274,13 @@ const EventTable = ({ darkMode }) => {
                     </select>
                 </div>
                 <div className="flex justify-between ml-0 md:ml-4">
-    <button className="border rounded-md p-2 w-full w-1/4 text-center">
+    <button style={{ width: '32px' }} className="border  p-2 w-full bg-white  text-center ml-0 md:ml-12">
         <BsThreeDotsVertical />
     </button>
 
     <button
         onClick={exportToPDF} // Attach export function
-        className={`border rounded-md p-2 flex items-center w-full md:w-auto ${darkMode ? 'text-white' : 'text-black'} ml-32 md:ml-4`} 
+        className={`border p-2 flex items-center w-full md:w-auto ${darkMode ? 'text-white' : 'text-black bg-white'} ml-32 md:ml-4`} 
     >
         <FiArrowDown className="mr-1" />
         Export
@@ -296,7 +308,7 @@ const EventTable = ({ darkMode }) => {
           <tr className={darkMode ? 'border-gray-600' : 'border-gray-200'}>
             <td className="border px-2 py-2 flex items-center">
               {/* Toggle button to expand/collapse row */}
-              <button onClick={() => toggleRow(index)} className="mr-2">
+              <button onClick={() => toggleRow(index)} className="mr-1">
                 {openRow === index ? (
                   <FaChevronDown className="md:hidden" />
                 ) : (
@@ -306,7 +318,7 @@ const EventTable = ({ darkMode }) => {
               {/* Event name button */}
               <button
                 onClick={() => handleEventClick(event)}
-                className={`ml-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black border-gray-200'}`}
+                className={`ml-0 md:ml-2 text-left ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black border-gray-200'}`}
               >
                 {event.name}
               </button>
@@ -317,13 +329,13 @@ const EventTable = ({ darkMode }) => {
             {/* Status button */}
             <td className="border px-1 py-1 text-center ml-0 md:ml-2">
               {event.status === 'in-progress' ? (
-                <button className="flex items-center bg-blue-500 md:bg-green-100 text-white md:text-green-600 rounded-lg px-1 py-1 text-xs/4 md:text-sm  md:pr-4">
-                  <FaCircle className="text-white hidden sm:inline md:text-green-600 mr-1" />
+                <button className="flex items-center bg-blue-500 md:bg-blue-100 text-white md:text-blue-500 rounded-lg px-1 py-1 text-xs/4 md:text-sm  md:pr-4">
+                  <FaCircle size={7} className="text-white hidden sm:inline md:text-blue-500 mr-1" />
                   In Progress
                 </button>
               ) : (
-                <button className="flex items-center bg-green-600 md:bg-purple-100 text-white md:text-purple-600 rounded-lg px-1 py-1 text-xs/4 md:text-sm md:pr-4">
-                  <FaCircle className="text-white hidden sm:inline md:text-purple-600 mr-1" />
+                <button className="flex items-center bg-emerald-500 md:bg-emerald-100 text-white md:text-green-500 rounded-lg px-1 py-1 text-xs/4 md:text-sm md:pr-4">
+                  <FaCircle size={7} className="text-white hidden sm:inline md:text-emerald-500 mr-1" />
                   Completed
                 </button>
               )}
@@ -376,7 +388,7 @@ const EventTable = ({ darkMode }) => {
                         onClick={() => handlePageChange(pageNumber)}
                         className={`w-8 h-8 flex items-center justify-center text-sm sm:text-base rounded-full ${
                             currentPage === pageNumber
-                                ? 'bg-purple-500 text-white'
+                                ? 'bg-indigo-600 text-white'
                                 : 'bg-gray-200 text-gray-700'
                         }`}
                     >

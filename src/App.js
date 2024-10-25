@@ -26,7 +26,8 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}>
+    <div style={{ backgroundColor: '#ffffff' }}>
+      <div className={darkMode ? 'bg-gray-900 text-white min-h-screen' : 'bg-white text-black min-h-screen'}>
       {/* Sidebar */}
       <Sidebar 
         darkMode={darkMode} 
@@ -51,6 +52,7 @@ function App() {
         
       </div>
       <BottomNavbar darkMode={darkMode}/>
+    </div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ const OverviewCards = ({ darkMode }) => {
   ];
 
   return (
-    <div className={`p-4 w-full ms-pt-10   ${darkMode ? 'bg-gray-800 text-white' : 'text-black'}`}>
+    <div className={`p-4 w-full  ${darkMode ? 'bg-gray-800 text-white' : 'text-black'}`}>
         
         <h2 className="text-2xl font-bold mb-8 pt-10 md:pt-2">Welcome! Here is your summary</h2>
 
@@ -36,28 +36,13 @@ const OverviewCards = ({ darkMode }) => {
                 <h3 className="text-lg font-semibold ml-2 md:text-sm lg:text-lg">{item.title}</h3>
                 <IoMdInformationCircleOutline className={`text-sm ms-1 ${darkMode ? 'text-white' : 'text-black'}`} />
               </div>
-              {/* <div className={`grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 items-start ml-2`}>
-  <p className="text-2xl md:text-sm lg:text-2xl font-bold ml-2 md:ml-1 md:text-left lg:text-left ">
-    {item.value}
-  </p>
-  <div className={`flex items-center ${isPositive ? 'text-green-500' : isNegative ? 'text-red-500' : ''}`}>
-  <div className="flex items-center">
-    {isPositive ? (
-      <GoArrowUpRight className="text-sm mr-1" />
-    ) : isNegative ? (
-      <GoArrowDownRight className="text-sm mr-1" />
-    ) : null}
-    <span className="text-sm">{item.percentageChange}</span>
-  </div>
-</div>
-
-</div> */}
+             
 
 <div className={`flex md:flex-col sm:flex-row lg:flex-row items-center ml-2`}>
   <div className="flex items-center mb-1 md:mb-0 md:mr-2">
     <p className="text-2xl md:text-sm lg:text-2xl font-bold">{item.value}</p>
   </div>
-  <div className={`flex items-center ${isPositive ? 'text-green-500' : isNegative ? 'text-red-500' : ''}`}>
+  <div className={`flex items-center ${isPositive ? 'text-emerald-500' : isNegative ? 'text-rose-500' : ''}`}>
     {isPositive ? (
       <GoArrowUpRight className="text-sm" />
     ) : isNegative ? (
