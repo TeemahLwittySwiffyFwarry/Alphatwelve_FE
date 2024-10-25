@@ -6,7 +6,7 @@ const Modal = ({ showModal, event, handleClose, darkMode }) => {
 
   return (
     <div 
-      className={`fixed inset-0 flex items-center justify-center z-50 ${darkMode ? 'bg-gray-900' : 'bg-gray-800'} bg-opacity-50 transition duration-300`}
+      className={`fixed inset-0 flex items-center justify-center z-50 w-auto ${darkMode ? 'bg-gray-900' : 'bg-gray-800'} bg-opacity-50 transition duration-300`}
     >
       <div 
         className={`p-6 rounded-lg shadow-lg max-w-lg relative ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} transition duration-300`}
@@ -41,7 +41,7 @@ const Modal = ({ showModal, event, handleClose, darkMode }) => {
             <div className="mt-6 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
               {/* Edit Button (Left) */}
               <button 
-                className={`bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex-1 sm:flex-none ${darkMode ? 'hover:bg-green-400' : ''}`}
+                className={`bg-white rounded border border-gray-800  hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg flex-1 sm:flex-none ${darkMode ? 'hover:bg-gray-400' : ''}`}
               >
                 Edit
               </button>

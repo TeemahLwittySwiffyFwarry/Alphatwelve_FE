@@ -3,17 +3,17 @@ import Sidebar from './components/Sidebar';
 import OverviewCards from './components/OverviewCards';
 import EventChart from './components/EventChart';
 import EventTable from './components/EventTable';
-import Modal from './components/Modal';
+
 import BottomNavbar from './components/BottomNavbar';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const event = { title: 'Event Title', description: 'Event Description' };
+  
   
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -45,11 +45,12 @@ function App() {
         <OverviewCards darkMode={darkMode} />
         <EventChart />
         <EventTable darkMode={darkMode} />
-        <BottomNavbar darkMode={darkMode}/>
+        
         
         
         
       </div>
+      <BottomNavbar darkMode={darkMode}/>
     </div>
   );
 }

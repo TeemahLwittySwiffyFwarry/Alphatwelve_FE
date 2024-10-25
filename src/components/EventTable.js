@@ -87,10 +87,10 @@ const EventTable = ({ darkMode }) => {
     };
 
     // Sort by status: 'in-progress' first, then 'completed'
-    const sortByStatus = (a, b) => {
-        const statusOrder = { 'in-progress': 1, 'completed': 2 };
-        return statusOrder[a.status] - statusOrder[b.status];
-    };
+    // const sortByStatus = (a, b) => {
+    //     const statusOrder = { 'in-progress': 1, 'completed': 2 };
+    //     return statusOrder[a.status] - statusOrder[b.status];
+    // };
 
 
     const pageCount = Math.ceil(filteredEvents.length / itemsPerPage);
@@ -195,7 +195,8 @@ const EventTable = ({ darkMode }) => {
 
 
     return (
-        <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+        <div className={`p-6 mb-16 md:mb-4 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+            
             <h1 className="text-2xl font-bold mb-4">Event History</h1>
 
             <form className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-7 w-full max-w-full">
@@ -260,7 +261,7 @@ const EventTable = ({ darkMode }) => {
 
                     </select>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between ml-0 md:ml-4">
     <button className="border rounded-md p-2 w-full w-1/4 text-center">
         <BsThreeDotsVertical />
     </button>
@@ -279,110 +280,143 @@ const EventTable = ({ darkMode }) => {
 
             {/* Table and pagination controls go here */}
             <div className="overflow-x-auto max-w-full">
-                <table className={`min-w-full table-auto ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-                    <thead className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                        <tr>
-                            <th className="border px-4 py-2 text-left">Event Name</th>
-                            <th className="border px-4 py-2 text-left hidden sm:table-cell">Date</th>
-                            <th className="border px-4 py-2 text-left hidden sm:table-cell">Speaker</th>
-                            <th className="border px-4 py-2 text-left">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentEvents.map((event, index) => (
-                            <React.Fragment key={index}>
-                                <tr className={darkMode ? 'border-gray-600' : 'border-gray-200'}>
-                                    <td className="border px-2 py-2 flex items-center">
-                                        <button onClick={() => toggleRow(index)} className="mr-2">
-                                            {openRow === index ? <FaChevronDown className="md:hidden" /> : <FaChevronRight className="md:hidden" />}
-                                        </button>
-                                        <button
-                                            onClick={() => handleEventClick(event)}
-                                            className={`ml-2  ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black border-gray-200'}`}
-                                        >
-                                            {event.name}
-                                        </button>
-                                    </td>
-                                    <td className="border px-4 py-2 hidden sm:table-cell  ">{event.date}</td>
-                                    <td className="border px-4 py-2 hidden sm:table-cell ">{event.speaker}</td>
-                                    <td className="border px-4 py-2 ">
-                                        {event.status === 'in-progress' ? (
-                                            <button className="flex items-center bg-green-100 text-green-600 rounded-lg px-3 py-1">
-                                                <FaCircle className="text-green-600 mr-1" />
-                                                In Progress
-                                            </button>
-                                        ) : (
-                                            <button className="flex items-center bg-purple-100 text-purple-600 rounded-lg px-3 py-1">
-                                                <FaCircle className="text-purple-600 mr-1" />
-                                                Completed
-                                            </button>
-                                        )}
-                                    </td>
-                                </tr>
-                                {openRow === index && (
-                                    <tr className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} sm:hidden`}>
-                                        <td colSpan="4" className="border px-4 py-2">
-                                            <p><strong>Date:</strong> {event.date}</p>
-                                            <p><strong>Speaker:</strong> {event.speaker}</p>
-                                        </td>
-                                    </tr>
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            {/* Pagination and controls... */}
-            <div className="flex sm:flex-col sm:flex-row justify-between items-center mt-4 space-y-2 sm:space-y-0 sm:space-x-4">
-                {/* Pagination Controls */}
-                <div className="flex items-center space-x-2">
-                    <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 0}
-                        className={`p-2 ${currentPage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        <FaLessThan />
-                    </button>
+  <table className={`min-w-full table-auto ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <thead className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+      <tr>
+        <th className="border px-4 py-2 text-left">Event Name</th>
+        <th className="border px-4 py-2 text-left hidden sm:table-cell">Date</th>
+        <th className="border px-4 py-2 text-left hidden sm:table-cell">Speaker</th>
+        <th className="border px-4 py-2 text-left">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {currentEvents.map((event, index) => (
+        <React.Fragment key={index}>
+          {/* Primary row with event details */}
+          <tr className={darkMode ? 'border-gray-600' : 'border-gray-200'}>
+            <td className="border px-2 py-2 flex items-center">
+              {/* Toggle button to expand/collapse row */}
+              <button onClick={() => toggleRow(index)} className="mr-2">
+                {openRow === index ? (
+                  <FaChevronDown className="md:hidden" />
+                ) : (
+                  <FaChevronRight className="md:hidden" />
+                )}
+              </button>
+              {/* Event name button */}
+              <button
+                onClick={() => handleEventClick(event)}
+                className={`ml-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black border-gray-200'}`}
+              >
+                {event.name}
+              </button>
+            </td>
+            {/* Hidden on small screens */}
+            <td className="border px-4 py-2 hidden sm:table-cell">{event.date}</td>
+            <td className="border px-4 py-2 hidden sm:table-cell">{event.speaker}</td>
+            {/* Status button */}
+            <td className="border px-1 py-1 text-center ml-0 md:ml-2">
+              {event.status === 'in-progress' ? (
+                <button className="flex items-center bg-blue-500 md:bg-green-100 text-white md:text-green-600 rounded-lg px-1 py-1 text-xs/4 md:text-sm  md:pr-4">
+                  <FaCircle className="text-white hidden sm:inline md:text-green-600 mr-1" />
+                  In Progress
+                </button>
+              ) : (
+                <button className="flex items-center bg-green-600 md:bg-purple-100 text-white md:text-purple-600 rounded-lg px-1 py-1 text-xs/4 md:text-sm md:pr-4">
+                  <FaCircle className="text-white hidden sm:inline md:text-purple-600 mr-1" />
+                  Completed
+                </button>
+              )}
+            </td>
+          </tr>
 
-                    {/* Page Numbers */}
-                    <div className="flex flex-wrap space-x-1">
-                        {Array.from({ length: pageCount }, (_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handlePageChange(index)}
-                                className={`px-2 py-1 text-sm sm:text-base rounded-full ${currentPage === index ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage >= pageCount - 1}
-                        className={`p-2 ${currentPage >= pageCount - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        <FaGreaterThan />
-                    </button>
+          {/* Expanded row */}
+          {openRow === index && (
+            <tr className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} sm:hidden`}>
+              {/* Spanning all columns */}
+              <td colSpan="4" className="border px-4 py-2">
+                <div className="grid grid-cols-2">
+                  {/* Speaker name on the left */}
+                  <div className="font-medium text-left"> {event.speaker}</div>
+                  {/* Date on the right */}
+                  <div className="font-medium text-right">{event.date}</div>
                 </div>
+              </td>
+            </tr>
+          )}
+        </React.Fragment>
+      ))}
+    </tbody>
+  </table>
 
-                {/* Rows per Page Selection */}
-                <div className="flex items-center">
-                    <span>Show: </span>
-                    <select
-                        value={itemsPerPage}
-                        onChange={handleItemsPerPageChange}
-                        className={`border rounded ml-2 p-1 text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-black border-gray-200'}`}
+   {/* Pagination and controls... */}
+   <div className="flex sm:flex-col md:flex-row sm:flex-row justify-between items-center mt-4 space-y-2 sm:space-y-0 sm:space-x-4">
+    {/* Pagination Controls */}
+    <div className="flex items-center space-x-2">
+        {/* Previous Arrow */}
+        <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 0}
+            className={`p-3 bg-gray-200 border border-gray-400 rounded-sm ${currentPage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+            <FaLessThan className='text-black' />
+        </button>
+
+        {/* Page Numbers with Circular Background and Spacing */}
+        <div className="flex items-center space-x-1 md:space-x-4">  {/* Adjust space between circles */}
+            {Array.from({ length: Math.min(3, pageCount) }, (_, index) => {
+                const pageNumber = Math.max(
+                    0,
+                    Math.min(currentPage - 1, pageCount - 3)
+                ) + index;
+
+                return (
+                    <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`w-8 h-8 flex items-center justify-center text-sm sm:text-base rounded-full ${
+                            currentPage === pageNumber
+                                ? 'bg-purple-500 text-white'
+                                : 'bg-gray-200 text-gray-700'
+                        }`}
                     >
-                        
-                        <option value={10}>10 rows</option>
-                        <option value={15}>15 rows</option>
-                        <option value={20}>20 rows</option>
-                        <option value={25}>25 rows</option>
-                        <option value={30}>30 rows</option>
-                    </select>
-                </div>
-            </div>
+                        {pageNumber + 1}
+                    </button>
+                );
+            })}
+        </div>
+
+        {/* Next Arrow */}
+        <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage >= pageCount - 1}
+            className={`p-3 bg-gray-200 border border-gray-400 rounded-sm ${currentPage >= pageCount - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+            <FaGreaterThan className='text-black' />
+        </button>
+    </div>
+
+    {/* Rows per Page Selection */}
+    <div className="flex items-center">
+        <span className="hidden sm:inline">Show: </span>
+        <select
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className={`border rounded ml-2 p-1 text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-black border-gray-200'}`}
+        >
+            <option value={10}>10 rows</option>
+            <option value={15}>15 rows</option>
+            <option value={20}>20 rows</option>
+            <option value={25}>25 rows</option>
+            <option value={30}>30 rows</option>
+        </select>
+    </div>
+</div>
+</div>
+
+           
+
+
 
 
             {/* Modal */}
@@ -390,6 +424,8 @@ const EventTable = ({ darkMode }) => {
                 showModal={showModal}
                 event={selectedEvent}
                 handleClose={handleCloseModal}
+                darkMode={darkMode} 
+         
             />
         </div>
     );

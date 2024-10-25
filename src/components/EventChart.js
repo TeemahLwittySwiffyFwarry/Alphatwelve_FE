@@ -31,7 +31,7 @@ const chartData = {
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false, // Disable default aspect ratio
-  aspectRatio: 1.5, // Adjust aspect ratio to match Figma proportions
+  // aspectRatio: 1.5, // Adjust aspect ratio to match Figma proportions
   plugins: {
     legend: {
       position: 'top',
@@ -47,16 +47,19 @@ const EventChart = () => {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl font-bold mb-6 ms-3">Event Registration per Month</h2>
-      <div className="flex flex-col md:flex-row justify-between w-full border border-gray-200">
-        <div className="flex-1 p-4" style={{ maxWidth: '600px', minHeight: '400px' }}>
-          <div className="h-full">
-            <Bar data={chartData} options={chartOptions} />
-          </div>
-        </div>
-        <div className="flex-1 p-4">
-          <Carousel />
-        </div>
-      </div>
+      <div className="flex flex-col md:flex-row justify-between w-full h-auto border border-gray-200">
+  <div className="flex-1 p-4 w-full md:w-1/2 h-full md:h-auto">
+    {/* Chart Container */}
+    <div className="h-[calc(50vh-150px)] md:h-[380px]">
+      <Bar data={chartData} options={chartOptions} />
+    </div>
+  </div>
+  <div className="flex-1 p-4">
+    <Carousel />
+  </div>
+</div>
+
+
     </div>
   );
 };

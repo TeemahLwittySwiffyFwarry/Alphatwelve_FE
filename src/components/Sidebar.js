@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react'; 
-import {
-  FaHome, FaCalendarAlt, FaUser, FaFileAlt, FaBell, FaEnvelope, FaCog, FaAngleRight, FaToggleOn, FaToggleOff, FaBars
-} from 'react-icons/fa';
+import {FaRegCalendarAlt, FaRegUser, } from 'react-icons/fa';
+import { BsFileText , BsToggleOn } from "react-icons/bs";
+import { CiHome } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { IoChatbubblesOutline, IoSettingsOutline } from "react-icons/io5";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { RxSwitch } from "react-icons/rx";
+
+import { PiDiamondsFour , PiSpeakerHifiBold } from "react-icons/pi";
+import { FiShoppingBag } from "react-icons/fi";
+
 
 const Sidebar = ({ darkMode, toggleDarkMode, toggleCollapse, collapsed }) => {
   const [isOpen, setIsOpen] = useState(false); // To handle sidebar toggle on small screens
@@ -44,6 +52,7 @@ const Sidebar = ({ darkMode, toggleDarkMode, toggleCollapse, collapsed }) => {
           )}
         </button>
       </div>
+      
 
       {/* Sidebar Container */}
       <div
@@ -60,58 +69,100 @@ const Sidebar = ({ darkMode, toggleDarkMode, toggleCollapse, collapsed }) => {
 
         {/* Sidebar navigation items */}
         <nav className="flex-grow overflow-y-auto">
-          <ul className="space-y-6 h-[calc(100vh-64px)]"> {/* Adjust height as needed */}
-            {[ 
-              { icon: <FaHome />, label: 'Home' },
-              { icon: <FaCalendarAlt />, label: 'Events' },
-              { icon: <FaUser />, label: 'Speakers' },
-              { icon: <FaFileAlt />, label: 'Reports' },
-              { icon: <FaBell />, label: 'Notifications' },
-              { icon: <FaEnvelope />, label: 'Messages' },
-              { icon: <FaCog />, label: 'Settings' },
-            ].map(({ icon, label }, index) => (
-              <li key={index} className="flex items-center gap-2 group">
-                <span className={`text-xl group-hover:text-purple-500 ${collapsed ? 'mx-auto' : 'mr-4'}`}>
-                  {icon}
-                </span>
-                {!collapsed && <span className="group-hover:text-purple-500">{label}</span>}
-              </li>
-            ))}
+        <ul className="space-y-6 h-[calc(100vh-64px)]">
+  {[
+    { icon: <CiHome className="rounded rounded-lg" />, label: 'Home' },
+    {
+      icon: collapsed ? <PiDiamondsFour className="rounded rounded-lg" /> : <FaRegCalendarAlt className="rounded rounded-lg" />,
+      label: 'Events',
+    },
+    {
+      icon: collapsed ? <PiSpeakerHifiBold className="rounded rounded-lg" /> : <FaRegUser className="rounded rounded-lg" />,
+      label: 'Speakers',
+    },
+    {
+      icon: collapsed ? <FiShoppingBag className="rounded rounded-lg" /> : <BsFileText className="rounded rounded-lg" />,
+      label: 'Reports',
+    },
+    {
+      icon: <IoIosNotificationsOutline />,
+      label: 'Notifications',
+      badge: true, // Dynamically add a badge here
+    },
+    { icon: <IoChatbubblesOutline />, label: 'Messages' },
+    { icon: <IoSettingsOutline />, label: 'Settings' },
+  ].map(({ icon, label, badge }, index) => (
+    <li
+      key={index}
+      className={`relative flex items-center gap-2 p-2 ${
+        !collapsed ? 'group hover:bg-purple-100' : ''
+      }`} // Apply hover background only when not collapsed
+    >
+      <span className={`text-xl group-hover:text-purple-500 ${collapsed ? 'mx-auto' : 'mr-4'} relative`}>
+        {icon}
 
-            {/* Collapse Button */}
-            <li className="flex items-center gap-2 cursor-pointer group" onClick={toggleCollapse}>
-              <FaAngleRight className={`text-xl group-hover:text-purple-500 ${collapsed ? 'mx-auto' : 'mr-4'}`} />
-              {!collapsed && <span className="group-hover:text-purple-500">Collapse</span>}
-            </li>
+        {/* Red dot when collapsed */}
+        {badge && collapsed && (
+          <span className="absolute top-[-4px] right-[-4px] block h-2.5 w-2.5 rounded-full bg-red-500"></span>
+        )}
+      </span>
+      {/* Show label only if not collapsed */}
+      {!collapsed && <span className="group-hover:text-purple-500">{label}</span>}
 
-            {/* Dark Mode Toggle */}
-            <li className="flex items-center gap-2 cursor-pointer group" onClick={toggleDarkMode}>
-              {darkMode ? (
-                <FaToggleOn className="text-xl text-white mr-4 group-hover:text-purple-500" />
-              ) : (
-                <FaToggleOff className="text-xl text-gray-500 mr-4 group-hover:text-purple-500" />
-              )}
-              {!collapsed && <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>}
-            </li>
+      {/* Badge for Notifications when not collapsed */}
+      {badge && !collapsed && (
+        <span className="absolute right-4 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded-full">
+          3
+        </span>
+      )}
+    </li>
+  ))}
 
-            <hr />
+  {/* Collapse Button */}
+  <li className={`flex items-center gap-2 cursor-pointer p-2 ${!collapsed ? 'group hover:bg-purple-100' : ''}`} onClick={toggleCollapse}>
+    {collapsed ? (
+      <MdKeyboardDoubleArrowRight className="text-xl ml-2 group-hover:text-purple-500" /> // Show right arrow when collapsed
+    ) : (
+      <MdKeyboardDoubleArrowLeft className="text-xl mr-4 group-hover:text-purple-500" />  // Show left arrow when expanded
+    )}
+    {!collapsed && <span className="group-hover:text-purple-500">Collapse</span>}
+  </li>
 
-            {/* Profile Section */}
-            <li>
-              <div className="flex items-center justify-between mt-auto px-2">
-                <div className="flex items-center">
-                  <img src="/logo.jpg" alt="Profile" className="h-8 w-8 rounded-full border-2 border-gray-200" />
-                  {!collapsed && (
-                    <div className="ml-2">
-                      <span>Oluwayemisi Oladosu</span>
-                      <span className="block text-sm text-gray-500">oladosu@gmail.com</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </li>
-          </ul>
+  {/* Dark Mode Toggle */}
+  <li className={`flex items-center gap-3 cursor-pointer p-2 ${!collapsed ? 'group hover:bg-purple-100' : ''}`} onClick={toggleDarkMode}>
+    {darkMode ? (
+      <RxSwitch className="text-xl text-white group-hover:text-purple-500" />
+    ) : (
+      <BsToggleOn className="text-xl text-gray-500 mr-4 group-hover:text-purple-500" />
+    )}
+    {!collapsed && <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>}
+  </li>
+
+  <hr />
+
+  {/* Profile Section */}
+  <li>
+    <div className="flex items-center justify-between mt-auto px-2">
+      <div className="flex items-center">
+        <img src="/logo.jpg" alt="Profile" className="h-8 w-8 rounded-full border-2 border-gray-200" />
+        {!collapsed && (
+          <div className="ml-2">
+            <span>Oluwayemisi Oladosu</span>
+            <span className="block text-sm text-gray-500">oladosu@gmail.com</span>
+          </div>
+        )}
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+
+
+          
         </nav>
+       
+        
       </div>
 
       {/* Overlay for small screens */}
@@ -121,7 +172,9 @@ const Sidebar = ({ darkMode, toggleDarkMode, toggleCollapse, collapsed }) => {
           onClick={handleSidebarToggle}
         ></div>
       )}
+      
     </div>
+    
   );
 };
 
