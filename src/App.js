@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import OverviewCards from './components/OverviewCards';
 import EventChart from './components/EventChart';
@@ -24,6 +24,10 @@ function App() {
   const toggleSidebarCollapse = () => {
     setSidebarCollapsed((prev) => !prev);
   };
+
+  useEffect(() => {
+    document.title = "OO | Event Mgt Dashboard";
+  }, []);
 
   return (
     <div style={{ backgroundColor: '#ffffff' }}>
